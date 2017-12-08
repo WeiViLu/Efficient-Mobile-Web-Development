@@ -11,7 +11,8 @@
     为了解决设备实际可视区域与浏览器自设宽度不同的问题，引入Viewport属性，通过meta标签引入。
 ```
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-```上述代码的作用让当前Viewport的宽度等于设备的宽度，同时不允许用户手动缩放。
+```
+上述代码的作用让当前Viewport的宽度等于设备的宽度，同时不允许用户手动缩放。
 **2.媒体查询**
     其允许开发者基于设备的不同特性来应用不同的样式声明，通过对视口宽度的判断，对网页输出不同的展示效果。
 **2.音视频播放**
