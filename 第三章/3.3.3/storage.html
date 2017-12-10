@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>随手记--本地保存</h2>
+    <div>
+        <textarea id="content" cols="100" rows="20"></textarea>
+    </div>
+<script>
+    //存储数据
+    localStorage.setItem('key','需要存储的数据');
+    //获取数据
+    var value=localStorage.getItem('key');
+    //删除数据
+    localStorage.removeItem('key');
+
+    //存储数据
+    localStorage['key1']='value1';
+    localStorage.key2='value2';
+
+    //获取数据
+    var value1=localStorage['key1'];
+    var value2=localStorage.key2;
+
+    //遍历所有存储的数据
+    for(var i=0;i<localStorage.length;i++){
+        var key=localStorage.key(i);
+        var value=localStorage.getItem(key);
+
+        console.log(key,value);
+    }
+
+    //获取记录内容的文本域
+    var el=document.querySelector('#content');
+    //为文本域DOM节点天剑blur事件
+    el.value=localStorage.getItem('data')||'';
+    el.addEventListener('blur',function(){
+        var data=el.value;
+        //保存到本地
+        localStorage.setItem('data',data);
+    })
+</script>
+</body>
+</html>
