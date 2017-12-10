@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用音频和视频</title>
+</head>
+<body>
+    <video width="400" height="300" controls id="video">
+        <source src="dizzy.mp4" type="video/mp4">
+        <source src="dizzy.webm" type="video/webm">
+        <source src="dizzy.ogv" type="video/ogv">
+        <p>你得浏览器不支持HTML5视频</p>
+    </video>
+    <br>
+
+    <input type="number" name="time" id="time" value="10">
+    <button id="btnSeek">GetInfo</button>
+
+<script>
+    var video=document.getElementById('video');
+    var time=document.getElementById('time');
+    var btnSeek=document.getElementById('btnSeek');
+    var sources=video.querySelectorAll('source');
+    var lastSource=sources[sources.length-1];
+
+    btnSeek.addEventListener('click',function(){
+        video.currentTime=time.value;
+    })
+
+    //对最后一个source元素绑定error事件，检测媒体元素是否存在可用源，如果没有，则向用户给出友好提示。
+    lastSource.addEventListener('error',function(){
+        alert('No source available');
+    })
+</script>
+</body>
+</html>
