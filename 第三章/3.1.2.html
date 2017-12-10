@@ -8,11 +8,20 @@
 </head>
 <body>
     <form action="">
-        电话：<input type="tel" name='tel'><br>
-        URL：<input type="url"><br>
-        电子邮件地址：<input type="email"><br>
-        日期：<input type="date"><br>
+        电话：<input type="tel" name='tel' pattern='1[3-8][0-9]{9}' title='请输入11位手机号' required><br>
+        URL：<input type="url" required><br>
+        电子邮件地址：<input type="email" required><br>
+        日期：<input type="date" required><br>
+        选择颜色：<input type="color" required><br>
+        数字：<input type="number" required><br>
+        滑块输入：<input type="range" required><br>
         <input type="submit" value='save'>
     </form>
+    <!-- 进度条 -->
+    <progress value="30" max="100"></progress>
+    <!-- 标尺 -->
+    <meter value="0.6">60%</meter>
+    <!-- contenteeditable 可编辑属性-->
+    <p contenteditable="true">这里的内容是可以编辑的</p>
 </body>
 </html>
