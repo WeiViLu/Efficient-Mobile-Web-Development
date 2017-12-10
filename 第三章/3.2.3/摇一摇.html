@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实战演练：在手机上实现摇一摇</title>
+</head>
+<body>
+    <div>摇一摇你的手机</div>
+<script>
+    var SHAKE_SPEED_THRESHOLD=300;
+    var lastTime=0;
+    var x=y=z=lastX=lastY=lastZ=0;
+    function motionHandler(evt){
+        var acceleration=evt.accelerationIncludingGravity;
+        var curTime=Date.now();
+        if((curTime-lastTime)>120){
+            var diffTime=curTime-lastTime;
+            lastTime=curTime;
+            x=acceleration.x;
+            y=acceleration.y;
+            z=acceleration.z;
+
+            var speed=Math.abs(x+y+z-lastX-lastY-lastZ)/diffTime*1000;
+            if(speed>SHAKE_SPEED_THRESHOLD){
+                alert('你摇动了手机');
+            }
+
+            lastX=x;
+            lastY=y;
+            lastZ=z;
+        }
+    }
+
+    if(window.DeviceMotionEvent){
+        window.addEventListener('devicemotion',motionHandler,false);
+    }else{
+        alertO('您的设备不支持位置感应！');
+    }
+</script>
+</body>
+</html>
