@@ -18,8 +18,49 @@
     </div>
 <!--为了简化代码，基于jQuery开发-->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!--自己封装的操作indexedDB的帮助类-->
+<script src="indexeddb.js"></script>
 <script>
-    
+    //预定义每个便签的HTML代码
+    var divstr=`<div class='note'><a class='close'>X</a><textarea></textarea></div>`
+    //实例化一个便签数据库、数据库
+    var db=new LocalDB('db1','notes')
+    //打开数据库
+    db.open(function(){
+        //获取所有已有便签
+        db.getAll(function(data){
+            var div=$(divstr);
+            div.data('id',data.id);
+            div.find('textarea').val(data.content);
+            //将便签插入添加按钮前边
+            div.insertBefore(add);
+        })
+
+        //未添加按钮注册单击事件
+        var add=$('.add').on('click',function(){
+            var div=$(divstr);
+            div.insertBefore(add);
+            db.set({content:''},function(id){
+                div.data('id',id);
+            })
+        })
+
+        //监听所有便签编辑域的焦点事件
+        $('.notes').on('blur','textarea',function(){
+            var div=$(this).parent();
+            var data={id:div.data('id'),content:$(this).val()};
+            db.set(data);
+        })
+        //监听所有关闭按钮的单击事件
+        .on('click','.close',function(){
+            if(confirm('确定删除此便签吗？')){
+                var div=$(this).parent();
+
+                db.remove(div.data('id'));
+                div.remove();
+            }
+        })
+    })
 </script>
 </body>
 </html>
