@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebGL绘制3d图形</title>
+    <script src="./libs/three.js"></script>
+</head>
+<body>
+    
+    <script>
+        var renderer=new THREE.WebGLRenderer({//创建webgl的图形渲染器
+            antialias:true
+        });
+        renderer.setSize(400,300);
+        document.body.appendChild(renderer.domElement);//将对应canvas插入文档
+
+        var camera=new THREE.PerspectiveCamera(60,400/300,1,5000);//引入透视投影相机
+        camera.position.z=500;
+
+        var scene=new THREE.Scene();//创建场景
+        var cube=new THREE.Mesh(    //新建图形
+            new THREE.BoxGeometry(200,200,200),
+            new THREE.MeshBasicMaterial({color:0x6699c,wireframe:true})
+        );
+        cube.rotation.x=0.5;
+        cube.rotation.y=0.5;
+        scene.add(cube);
+
+        renderer.render(scene,camera);
+    </script>
+</body>
+</html>
