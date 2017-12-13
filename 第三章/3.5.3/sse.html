@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Server-Sent Events Demo</title>
+    <script>
+        //监听load事件，页面load完成之后完成
+        window.addEventListener('load',function(){
+            var status=document.getElementById('status');
+            var output=document.getElementById('output');
+            var source;
+
+            function connect(){
+                //向服务端建立连接
+                source=new EventSource("stream");
+                //监听message事件，获取服务端发送的数据
+                source.addEventListener('message',function(event){
+                    output.textContent=event.data;
+                },false)
+                //监听Open事件，判断连接是否进行中
+                source.addEventListener('open',function(event){
+                    status.textContent='连接打开了！'
+                },false)
+                //监听error事件，处理连接错误的情况
+                source.addEventListener('error',function(event){
+                    if(event.target.readyState===EventSource.CLOSED){
+                        source.close();
+                        status.textContent='连接关闭了！';
+                    }else{
+                        status.textContent='连接关闭了！位置错误！';
+                    }
+                },false)
+            }
+
+            if(!!window.EventSource){//判断浏览器是否支持server-sent events
+                connect();
+            }else{
+                status.textContent='对不起，您的浏览器不支持server-sent events'
+            }
+        },false)
+    </script>
+</head>
+<body>
+    <span id="status">Connection closed!</span>
+    <span id="output"></span>
+</body>
+</html>
