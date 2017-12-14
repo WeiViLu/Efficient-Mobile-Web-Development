@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪类和伪元素</title>
+    <style>
+       span::before{
+           display: inline-block;
+           width: 4px;
+           height: 14px;
+           margin-right: 10px;
+           background: #198be5;
+           content:"";
+       }
+       p::first-letter{
+           color: red;
+       }
+       p::first-line{
+           font-style: italic;
+       }
+       p::after{
+           display: block;
+           height: 1px;
+           content:'...';
+       }
+    </style>
+</head>
+<body>
+    <span>Pseudo-elements</span>
+    <p>
+        Pseudo-elements create abstractions about the document tree beyond those sepecified by the document language.
+    </p>
+</body>
+</html>
