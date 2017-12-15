@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .img{
+            position: fixed;
+            top: -400px;
+        }
+        .img{
+             transition: top ease 1s;
+        }
+        .img.show{
+            top: 20px;
+        }
+    </style>
+</head>
+<body onload="document.querySelector('.img').className+=' show'">
+    <img class="img" src="http://pic.qiantucdn.com/01/37/07/67bOOOPICff.jpg" width="500" />        
+</body>
+</html>
