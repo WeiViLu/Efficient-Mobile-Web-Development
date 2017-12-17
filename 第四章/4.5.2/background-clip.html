@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .square-01,.square-02,.square-03{
+        width: 150px;
+        height: 100px;
+        color: #fff; 
+        font-size: 16px;
+        line-height: 100px;
+        float: left;
+        margin-right: 10px;
+        padding: 10px;
+        text-align: center;
+        border: 10px dashed #333;
+        background-color:gold;
+        background-repeat:no-repeat;
+    }
+    .square-01{
+        background-clip: padding-box;
+        -webkit-background-clip: padding-box;
+    }
+    .square-02{
+        background-clip: border-box;
+        -webkit-background-clip: border-box;
+    }
+    .square-03{
+        background-clip: content-box;
+        -webkit-background-clip: content-box;
+    }
+    </style>
+</head>
+<body>
+    <div class="square-01">padding-box</div>
+    <div class="square-02">border-box</div>
+    <div class="square-03">content-box</div>
+    
+</body>
+</html>
